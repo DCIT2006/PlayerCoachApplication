@@ -1,0 +1,12 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+<div class="text-center">
+    <h1 class="display-4">Sports Application</h1>
+</div>
+
+<div class="d-flex justify-content-center mt-4">
+    <a href="/Applications" class="btn btn-primary mx-2">Applications</a>
+    @* <a href="/SelectApplication" class="btn btn-secondary mx-2">Select Application</a> *@
+    <a class="btn btn-primary mx-2" asp-controller="SelectApplication" asp-action="Index">Select Application</a>
+</div>

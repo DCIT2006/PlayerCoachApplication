@@ -1,0 +1,50 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    if (Model == null)
+    {
+        <div class="d-flex justify-content-center align-items-center vh-25">
+            <div class="text-center">
+                <h1 class="text-center">Select Your Sport</h1>
+
+                <form method="post" asp-controller="SelectApplication" asp-action="Index">
+                    <select id="sport" name="selectedSport">
+                        <option value="Football">Football</option>
+                        <option value="Basketball">Basketball</option>
+                        <option value="Baseball">Baseball</option>
+                        <option value="Hockey">Hockey</option>
+                        <option value="Soccer">Soccer</option>
+                    </select>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+
+    }
+    else if (Model != null && Model.SelectedSportName != null && Model.SelectedRole == null)
+    {
+        <div class="d-flex justify-content-center align-items-center vh-25">
+            <div class="text-center">
+                <h1 class="text-center">Select Your Role</h1>
+
+                <form method="post" asp-controller="SelectApplication" asp-action="Index">
+                    <input type="hidden" name="selectedSport" value="@Model.SelectedSportName" />
+                    <select id="role" name="selectedRole">
+                        <option value="Coach">Coach</option>
+                        <option value="Player">Player</option>
+                    </select>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+    }
+    else if (Model != null && Model.SelectedSportName != null && Model.SelectedRole != null)
+    {
+        <h1 class="text-center">Your Selection</h1>
+        <div class="text-center">
+            <p>You selected: @Model.SelectedSportName</p>
+            <p>Your role: @Model.SelectedRole</p>
+        </div>
+    }
+}
