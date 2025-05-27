@@ -41,10 +41,30 @@
     }
     else if (Model != null && Model.SelectedSportName != null && Model.SelectedRole != null)
     {
-        <h1 class="text-center">Your Selection</h1>
-        <div class="text-center">
-            <p>You selected: @Model.SelectedSportName</p>
-            <p>Your role: @Model.SelectedRole</p>
-        </div>
+        if (Model.SelectedRole == "Coach")
+        {
+            <h1 class="text-center">Your Selection</h1>
+            <div class="text-center">
+
+                <form method="get" asp-controller="CoachApplication" asp-action="Index">
+                    <input type="hidden" name="selectedSportName" value="@Model.SelectedSportName" />
+                    <input type="hidden" name="selectedRole" value="@Model.SelectedRole" />
+                    <button type="submit" class="btn btn-success">Go to Application</button>
+                </form>
+            </div>
+        }
+        else
+        {
+            <h1 class="text-center">Your Selection</h1>
+                <div class="text-center">
+        <form method="get" asp-controller="PlayerApplication" asp-action="Index">
+                <input type="hidden" name="selectedSportName" value="@Model.SelectedSportName" />
+                <input type="hidden" name="selectedRole" value="@Model.SelectedRole" />
+                <button type="submit" class="btn btn-success">Go to Application</button>
+            </form>
+            </div>
+        }
+        
+
     }
 }

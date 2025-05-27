@@ -1,7 +1,17 @@
+using Microsoft.EntityFrameworkCore;
+using PlayerCoachApplication.Data.Context;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+IConfiguration configuration = new ConfigurationBuilder()
+.AddJsonFile("appsettings.json")
+.AddEnvironmentVariables().Build();
+builder.Services.AddDbContext<PlayerApplicationDBContext>(options =>
+    options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+
+
 
 var app = builder.Build();
 

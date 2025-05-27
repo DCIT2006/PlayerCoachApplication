@@ -1,9 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35931.197 d17.13
+VisualStudioVersion = 17.13.35931.197
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayerCoachApplication", "PlayerCoachApplication\PlayerCoachApplication.csproj", "{8E335E3B-7BE2-461B-8B41-7BF4C2441367}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayerCoachApplication.Data", "PlayerCoachApplication.Data\PlayerCoachApplication.Data.csproj", "{554DA45F-7672-48F3-B45C-54A298702772}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayerCoachApplication.Initialization", "PlayerCoachApplication.Initialization\PlayerCoachApplication.Initialization.csproj", "{B7B505D0-A059-44D5-B358-D239F9CC5149}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{8E335E3B-7BE2-461B-8B41-7BF4C2441367}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8E335E3B-7BE2-461B-8B41-7BF4C2441367}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8E335E3B-7BE2-461B-8B41-7BF4C2441367}.Release|Any CPU.Build.0 = Release|Any CPU
+		{554DA45F-7672-48F3-B45C-54A298702772}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{554DA45F-7672-48F3-B45C-54A298702772}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{554DA45F-7672-48F3-B45C-54A298702772}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{554DA45F-7672-48F3-B45C-54A298702772}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B7B505D0-A059-44D5-B358-D239F9CC5149}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7B505D0-A059-44D5-B358-D239F9CC5149}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7B505D0-A059-44D5-B358-D239F9CC5149}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7B505D0-A059-44D5-B358-D239F9CC5149}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

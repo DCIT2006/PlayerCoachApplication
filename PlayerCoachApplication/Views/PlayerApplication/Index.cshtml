@@ -1,0 +1,39 @@
+﻿@{
+    var positions = ViewBag.Positions as List<string>;
+}
+
+<h1> Welcome to the Player Application</h1>
+<p>Sport: @Model.SelectedSportName</p>
+<p>Sport: @Model.SelectedRole</p>
+
+<form method="post" asp-controller="PlayerApplication" asp-action= "Index">
+    <input type="hidden" name="selectedSportName" value="@Model.SelectedSportName" />
+    <input type="hidden" name="selectedRole" value="@Model.SelectedRole" />
+    <div>
+        <label for="FirstName">First Name</label>
+        <input type="text" Name="FirstName" class="form-control" value="" />
+    </div>
+    <div>
+        <label for="LastName">Last Name</label>
+        <input type="text" Name="LastName" class="form-control" value="" />
+    </div>
+    <div>
+        <label for="DateOfBirth">Date Of Birth</label>
+        <input type="date" Name="DateOfBirth" class="form-control" value="" />
+    </div>
+    <div>
+        <label for="PreferredPosition">Preferred Position</label>
+        <select name="PreferredPosition" class="form-control" id="PreferredPosition">
+            <option value="">-- Select Positiion --</option>
+            @if (positions != null)
+            {
+                foreach (var pos in positions)
+                {
+                    <option value="@pos" selected="@(Model.PreferredPosition == pos ? "selected" : null)">@pos</option>
+                }
+            }
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
