@@ -1,5 +1,5 @@
 ﻿@{
-    var positions = ViewBag.Positions as List<string>;
+ 
 }
 
 <h1> Welcome to the Player Application</h1>
@@ -25,9 +25,9 @@
         <label for="PreferredPosition">Preferred Position</label>
         <select name="PreferredPosition" class="form-control" id="PreferredPosition">
             <option value="">-- Select Positiion --</option>
-            @if (positions != null)
+            @if (@Model.Sports != null)
             {
-                foreach (var pos in positions)
+                foreach (var pos in Model.Sports)
                 {
                     <option value="@pos" selected="@(Model.PreferredPosition == pos ? "selected" : null)">@pos</option>
                 }

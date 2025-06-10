@@ -25,11 +25,12 @@ namespace PlayerCoachApplication.Controllers
                SelectedRole = Model.SelectedRole,
                SelectedSportName = Model.SelectedSportName,
             };
-            _context.SelectedPositionToSport.ToList();
-            //_context.SelectedPositionToSport
-            //    .Where(x => x.Sport == model.SelectedSportName)
-            //    .ToList()
-            //    .ForEach(x => model.Sports.Add(x.Position));
+            var Position =_context.SelectedPositionToSport.ToList();
+            
+            _context.SelectedPositionToSport
+                .Where(x => x.Sport == model.SelectedSportName)
+                .ToList()
+                .ForEach(x => model.Sports.Add(x.Position));
             return View(model);
         }
     }

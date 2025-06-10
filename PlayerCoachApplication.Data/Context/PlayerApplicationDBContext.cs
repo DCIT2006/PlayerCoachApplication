@@ -20,6 +20,7 @@ namespace PlayerCoachApplication.Data.Context
         }
 
         public DbSet<SelectedPositionToSportModel> SelectedPositionToSport { get; set; }
+        public DbSet<CoachApplicationModel> CoachApplications { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -30,6 +31,9 @@ namespace PlayerCoachApplication.Data.Context
             modelBuilder.Entity<SelectedPositionToSportModel>()
                 .HasKey(sp => new { sp.Position, sp.Sport });
 
+            modelBuilder.Entity<CoachApplicationModel>()
+                .HasKey(c => c.Id);
         }
+
     }
 }
