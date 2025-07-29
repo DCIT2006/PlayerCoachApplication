@@ -20,7 +20,9 @@ namespace PlayerCoachApplication.Data.Context
         }
 
         public DbSet<SelectedPositionToSportModel> SelectedPositionToSport { get; set; }
-        public DbSet<CoachApplicationModel> CoachApplications { get; set; }
+        public DbSet<CoachApplicationModel> CoachApplicationModel { get; set; }
+
+        public DbSet<PlayerApplicationModel> PlayerApplicationModel { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

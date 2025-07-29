@@ -8,18 +8,18 @@
 
 <form method="post" asp-controller="PlayerApplication" asp-action= "Index">
     <input type="hidden" name="selectedSportName" value="@Model.SelectedSportName" />
-    <input type="hidden" name="selectedRole" value="@Model.SelectedRole" />
+    <input type="hidden" name="selectedRole" value="@Model.SelectedRole" required/>
     <div>
         <label for="FirstName">First Name</label>
-        <input type="text" Name="FirstName" class="form-control" value="" />
+        <input type="text" Name="FirstName" class="form-control" value="" required/>
     </div>
     <div>
         <label for="LastName">Last Name</label>
-        <input type="text" Name="LastName" class="form-control" value="" />
+        <input type="text" Name="LastName" class="form-control" value="" required/>
     </div>
     <div>
         <label for="DateOfBirth">Date Of Birth</label>
-        <input type="date" Name="DateOfBirth" class="form-control" value="" />
+        <input type="date" Name="DateOfBirth" class="form-control" value="" required/>
     </div>
     <div>
         <label for="PreferredPosition">Preferred Position</label>

@@ -1,0 +1,39 @@
+﻿@model PlayerCoachApplication.Data.Models.CoachApplicationModel
+
+@{
+    ViewData["Title"] = "Edit Player Application";
+    Layout = "_Layout";
+}
+
+<h2>Edit Coach Application</h2>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="Id" />
+    <div class="mb-3">
+        <label asp-for="FirstName" class="form-label"></label>
+        <input asp-for="FirstName" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="LastName" class="form-label"></label>
+        <input asp-for="LastName" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="DateOfBirth" class="form-label"></label>
+        <input asp-for="DateOfBirth" type="date" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="YearsOfExperience" class="form-label"></label>
+        <input asp-for="YearsOfExperience" type="number" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="SelectedSportName" class="form-label"></label>
+        <input asp-for="SelectedSportName" class="form-control" asp-items="ViewBag.Sports">
+        <option value="">-- Select Sport --</option>
+    </div>
+    <div class="mb-3">
+        <label asp-for="SelectedRole" class="form-label"></label>
+        <input asp-for="SelectedRole" class="form-control" asp-items="ViewBag.Roles">
+        <option value="">-- Select Role --</option>
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>
