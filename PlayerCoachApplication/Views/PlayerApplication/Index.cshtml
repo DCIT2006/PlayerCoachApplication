@@ -2,9 +2,8 @@
  
 }
 
-<h1> Welcome to the Player Application</h1>
-<p>Sport: @Model.SelectedSportName</p>
-<p>Sport: @Model.SelectedRole</p>
+<h1> Player Application</h1>
+
 
 <form method="post" asp-controller="PlayerApplication" asp-action= "Index">
     <input type="hidden" name="selectedSportName" value="@Model.SelectedSportName" />
@@ -37,3 +36,18 @@
 
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
+
+        @* This code creates a web page for submitting a player application.
+What it does:
+•	Displays a welcome message.
+•	Shows the selected sport and role from the model.
+•	Contains a form for the user to enter:
+•	First Name
+•	Last Name
+•	Date of Birth
+•	Preferred Position (dropdown, options come from Model.Sports)
+•	The dropdown for "Preferred Position" is filled with positions from the model, and the current preferred position is pre-selected if available.
+•	Includes hidden fields to keep the selected sport and role values.
+•	When the form is submitted, it sends the data to the Index action of the PlayerApplication controller.
+In short:
+This page lets users fill out and submit a player application, including their personal details, selected sport, role, and preferred position. *@

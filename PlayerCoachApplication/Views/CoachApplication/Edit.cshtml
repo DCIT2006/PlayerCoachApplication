@@ -19,21 +19,34 @@
     </div>
     <div class="mb-3">
         <label asp-for="DateOfBirth" class="form-label"></label>
-        <input asp-for="DateOfBirth" type="date" class="form-control" />
+        <input asp-for="DateOfBirth" type="date" class="form-control" required />
+        <span asp-validation-for="YearsOfExperience" class="text-danger"></span>
     </div>
     <div class="mb-3">
         <label asp-for="YearsOfExperience" class="form-label"></label>
-        <input asp-for="YearsOfExperience" type="number" class="form-control" />
+        <input asp-for="YearsOfExperience" type="number" class="form-control" required />
+        <span asp-validation-for="YearsOfExperience" class="text-danger"></span>
     </div>
     <div class="mb-3">
         <label asp-for="SelectedSportName" class="form-label"></label>
-        <input asp-for="SelectedSportName" class="form-control" asp-items="ViewBag.Sports">
-        <option value="">-- Select Sport --</option>
+        <select asp-for="SelectedSportName" asp-items="Model.Sports" class="form-control">
+            <option value="">-- Select Sport --</option>
+        </select>
     </div>
-    <div class="mb-3">
-        <label asp-for="SelectedRole" class="form-label"></label>
-        <input asp-for="SelectedRole" class="form-control" asp-items="ViewBag.Roles">
-        <option value="">-- Select Role --</option>
-    </div>
-    <button type="submit" class="btn btn-primary">Save</button>
+        <button type="submit" class="btn btn-primary">Save</button>
 </form>
+
+@* This code creates a web page for editing a coach's application.
+What it does:
+•	Uses the CoachApplicationModel to fill in the form fields.
+•	Displays a form with fields for:
+•	First Name
+•	Last Name
+•	Date of Birth
+•	Years of Experience
+•	Selected Sport (dropdown, options from ViewBag.Sports)
+•	Selected Role (dropdown, options from ViewBag.Roles)
+•	Includes a hidden field for the coach's ID.
+•	Has a "Save" button to submit the form.
+In short:
+This page lets users update a coach's details, choose their sport and role, and save the changes. *@

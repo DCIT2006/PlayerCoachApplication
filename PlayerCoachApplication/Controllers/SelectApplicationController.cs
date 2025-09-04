@@ -24,3 +24,11 @@ namespace PlayerCoachApplication.Controllers
         }
     }
 }
+
+//This code defines a controller for selecting a sport and role in your web app.
+//•	SelectApplicationController handles requests for the selection page.
+//•	Index() (GET): Shows the selection page.
+//•	Index() (POST): Receives the selected sport and role from the form, creates a view model with those values, and returns the view with that model.
+//In short:
+//This controller lets users choose a sport and (optionally) a role, then passes their choices to the view for further use.
+

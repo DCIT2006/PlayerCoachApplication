@@ -1,67 +1,106 @@
-﻿@model PlayerCoachApplication.Models.EditPlayerApplicationModel
+﻿@using System.Text.Json
+@model PlayerCoachApplication.Models.EditPlayerApplicationModel
 
 @{
     ViewData["Title"] = "Edit Player Application";
     Layout = "_Layout";
 }
-
+<body>
 <h2>Edit Player Application</h2>
 
-<form asp-action="Edit" method="post">
-    <input type="hidden" asp-for="PlayerApplicationModel.Id" />
-    <div class="mb-3">
-        <label asp-for="PlayerApplicationModel.FirstName" class="form-label"></label>
-        <input asp-for="PlayerApplicationModel.FirstName" class="form-control" />
-    </div>
-    <div class="mb-3">
-        <label asp-for="PlayerApplicationModel.LastName" class="form-label"></label>
-        <input asp-for="PlayerApplicationModel.LastName" class="form-control" />
-    </div>
-    <div class="mb-3">
-        <label asp-for="PlayerApplicationModel.DateOfBirth" class="form-label"></label>
-        <input asp-for="PlayerApplicationModel.DateOfBirth" type="date" class="form-control" />
-    </div>
-    <div class="mb-3">
-        <label asp-for="PlayerApplicationModel.SelectedSportName" class="form-label"></label>
-        <select id="sport" name="SelectedSportName">
-            <option value="Football">Football</option>
-            <option value="Basketball">Basketball</option>
-            <option value="Baseball">Baseball</option>
-            <option value="Hockey">Hockey</option>
-            <option value="Soccer">Soccer</option>
-        </select>
-    </div>
-    <div class="mb-3">
-        <label asp-for="PlayerApplicationModel.SelectedRole" class="form-label"></label>
-        <input asp-for="PlayerApplicationModel.SelectedRole" class="form-control" />
-    </div>
-
-    <label for="PreferredPosition">Preferred Position</label>
-    <select name="PreferredPosition" class="form-control" id="PreferredPosition">
-        <option value="">-- Select Positiion --</option>
-        @if (@Model.PlayerApplicationModel.SelectedSportName == "Football")
-
-        {
-            
-            @if (@Model.FootballPositions != null)
-            {
-                foreach (var pos in Model.FootballPositions)
-                {
-                    <option value="@pos" selected="@(Model.PlayerApplicationModel.PreferredPosition == pos ? "selected" : null)">@pos</option>
-                }
-            }
-        }
-        @if (@Model.PlayerApplicationModel.SelectedSportName == "Basketball")
-        {
-            @if (@Model.BasketballPositions != null)
-            {
-                foreach (var pos in Model.BasketballPositions)
-                {
-                    <option value="@pos" selected="@(Model.PlayerApplicationModel.PreferredPosition == pos ? "selected" : null)">@pos</option>
-                }
-            }
-        }
-
+    <form asp-action="Edit" method="post">
+        <input type="hidden" asp-for="PlayerApplicationModel.Id" />
+        <div class="mb-3">
+            <label asp-for="PlayerApplicationModel.FirstName" class="form-label"></label>
+            <input asp-for="PlayerApplicationModel.FirstName" class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label asp-for="PlayerApplicationModel.LastName" class="form-label"></label>
+            <input asp-for="PlayerApplicationModel.LastName" class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label asp-for="PlayerApplicationModel.DateOfBirth" class="form-label"></label>
+            <input asp-for="PlayerApplicationModel.DateOfBirth" type="date" class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label asp-for="PlayerApplicationModel.SelectedSportName" class="form-label"></label>
+            <select asp-for="PlayerApplicationModel.SelectedSportName" class="form-control" id="sport">
+                <option value="Football">Football</option>
+                <option value="Basketball">Basketball</option>
+                <option value="Baseball">Baseball</option>
+                <option value="Hockey">Hockey</option>
+                <option value="Soccer">Soccer</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label asp-for="PlayerApplicationModel.PreferredPosition" class="form-label"></label>
+            <select asp-for="PlayerApplicationModel.PreferredPosition" class="form-control" id="PreferredPosition">
+                <option value="">-- Select Position --</option>
+            </select>
+        </div>
         <button type="submit" class="btn btn-primary">Save</button>
-</form>
+    </form>>
 
+<script>
+    const footballPositions = @Html.Raw(JsonSerializer.Serialize(Model.FootballPositions ?? new List<string>()));
+    const basketballPositions = @Html.Raw(JsonSerializer.Serialize(Model.BasketballPositions ?? new List<string>()));
+    const baseballPositions = @Html.Raw(JsonSerializer.Serialize(Model.BaseballPositions ?? new List<string>()));
+    const hockeyPositions = @Html.Raw(JsonSerializer.Serialize(Model.HockeyPositions ?? new List<string>()));
+    const soccerPositions = @Html.Raw(JsonSerializer.Serialize(Model.SoccerPositions ?? new List<string>()));
+        console.log('footballpositions',footballPositions);
+        console.log('basketballPositions',basketballPositions);
+        console.log('baseballPositions',baseballPositions);
+        console.log('hockeyPositions',hockeyPositions);
+        console.log('soccerPositions',soccerPositions);
+
+    function populatePositions() {
+        const sport = document.getElementById('sport').value;
+        const positionSelect = document.getElementById('PreferredPosition');
+        positionSelect.innerHTML = '<option value="">-- Select Position --</option>';
+
+        let positions = [];
+        switch (sport) {
+            case 'Football': positions = footballPositions; break;
+            case 'Basketball': positions = basketballPositions; break;
+            case 'Baseball': positions = baseballPositions; break;
+            case 'Hockey': positions = hockeyPositions; break;
+            case 'Soccer': positions = soccerPositions; break;
+            default: positions = [];
+        }
+
+        positions.forEach(function (pos) {
+            const option = document.createElement('option');
+            option.value = pos;
+            option.text = pos;
+            positionSelect.appendChild(option);
+        });
+    }
+
+    // Run on page load
+    window.addEventListener('DOMContentLoaded', populatePositions);
+
+    // Run on sport change
+    document.getElementById('sport').addEventListener('change', populatePositions);
+</script>
+</body>
+
+@* This code creates a web page for editing a player’s application.
+What it does:
+•	Uses the EditPlayerApplicationModel to fill in the form fields with the player's current data.
+•	Displays a form with fields for:
+•	First Name
+•	Last Name
+•	Date of Birth
+•	Sport (dropdown)
+•	Preferred Position (dropdown, options change based on selected sport)
+•	When the sport is changed, the available positions update automatically using JavaScript.
+•	On page load, the positions dropdown is set based on the current sport.
+•	When the form is submitted, the updated player information is sent to the server to be saved.
+How the position dropdown works:
+•	The lists of positions for each sport are passed from the server to JavaScript.
+•	The populatePositions function updates the position dropdown based on the selected sport.
+•	This function runs both when the page loads and whenever the sport selection changes.
+In short:
+This page lets users update a player’s details and preferred position,
+
+ *@

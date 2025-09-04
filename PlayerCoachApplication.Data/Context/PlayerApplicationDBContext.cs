@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using PlayerCoachApplication.Data.Context;
 using PlayerCoachApplication.Data.Models;
 using System;
 using System.Collections.Generic;
@@ -39,3 +40,18 @@ namespace PlayerCoachApplication.Data.Context
 
     }
 }
+
+//This code defines a database context class called PlayerApplicationDBContext for your web app using Entity Framework Core.
+//What it does:
+//•	Inherits from DbContext, which is used to interact with the database.
+//•	Has three properties (DbSets) that represent tables in the database:
+//•	SelectedPositionToSport: Stores positions available for each sport.
+//•	CoachApplicationModel: Stores coach applications.
+//•	PlayerApplicationModel: Stores player applications.
+//•	The constructor allows configuration of the context, such as connecting to the database.
+//•	The OnModelCreating method sets up rules for the database:
+//•	Makes a composite key for SelectedPositionToSportModel using both Position and Sport.
+//•	Sets the primary key for CoachApplicationModel to Id.
+//In short:
+//This class manages how your app connects to and works with the database tables for player applications, coach applications, and sport positions.
+

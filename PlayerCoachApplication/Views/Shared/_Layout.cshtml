@@ -47,3 +47,17 @@
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
+
+   @*  This code defines the main layout for your web app.
+It provides a consistent structure and style for all pages that use it.
+What it does:
+•	Sets up the HTML document with meta tags and page title.
+•	Includes CSS stylesheets for Bootstrap and your site.
+•	Creates a navigation bar at the top with links to "Home" and "Privacy".
+•	Defines a container for the main content (@RenderBody()), which is replaced by each page's specific content.
+•	Adds a footer with copyright and a privacy link.
+•	Loads JavaScript libraries (jQuery, Bootstrap, and your site scripts).
+•	Allows individual pages to add extra scripts if needed (@RenderSectionAsync("Scripts", required: false)).
+In short:
+This file is the template for your site's pages, handling the header, navigation, footer, and shared styles/scripts. Each page's content appears in the main area.
+ *@

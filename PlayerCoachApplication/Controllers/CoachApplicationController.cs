@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Client;
 using PlayerCoachApplication.Data.Context;
 using PlayerCoachApplication.Data.Models;
 using PlayerCoachApplication.Models;
+using System.Collections.Generic;
 
 namespace PlayerCoachApplication.Controllers
 {
@@ -96,8 +98,19 @@ namespace PlayerCoachApplication.Controllers
             {
                 return NotFound();
             }
+
+            // Get sports from database or a static list
+            var sports = await _context.SelectedPositionToSport
+                .Select(x => x.Sport)
+                .Distinct()
+                .OrderBy(s => s)
+                .ToListAsync();
+            application.Sports = sports;
+            
+
             return View(application);
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, CoachApplicationModel model)
@@ -129,5 +142,15 @@ namespace PlayerCoachApplication.Controllers
         }
     }
 }
+
+//•	The controller uses a database context (PlayerApplicationDBContext) to access coach application data.
+//•	Index: Adds a new coach application if a first name is provided, then shows the form.
+//•	List: Shows all coach applications, or only those for a selected sport.
+//•	FilteredList: Shows applications filtered by sport, and provides a list of available sports.
+//•	Edit: Lets you edit an existing coach application.
+//•	Delete: Removes a coach application from the database.
+//In short:
+//This controller lets you create, view, filter, edit, and delete coach applications in your web app.
+
 
 

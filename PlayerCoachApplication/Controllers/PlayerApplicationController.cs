@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using PlayerCoachApplication.Models;
-using PlayerCoachApplication.Data.Context;
-using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using PlayerCoachApplication.Data.Context;
 using PlayerCoachApplication.Data.Models;
+using PlayerCoachApplication.Models;
+using System.Linq;
+using System.Numerics;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace PlayerCoachApplication.Controllers
 {
@@ -82,33 +84,45 @@ namespace PlayerCoachApplication.Controllers
             }
             var Position = _context.SelectedPositionToSport.ToList();
 
-             var positions = _context.SelectedPositionToSport
-                .Where(x => x.Sport == application.SelectedSportName)
+             var footballPositions = Position
+                .Where(x => x.Sport == "Football")
                 .ToList();
-            var temp = _context.SelectedPositionToSport
+            var basketballPositions = _context.SelectedPositionToSport
                 .Where(x => x.Sport == "Basketball")
                 .ToList();
+            //var baseballPositions = _context.SelectedPositionToSport
+            //    .Where(x => x.Sport == "Baseball")
+            //    .ToList();
 
             var editPlayerApplicationModel = new EditPlayerApplicationModel();
             editPlayerApplicationModel.PlayerApplicationModel= application;
-            editPlayerApplicationModel.FootballPositions = positions.Select(x => x.Position).ToList();
-            editPlayerApplicationModel.BasketballPositions = temp.Select(x => x.Position).ToList();
+            editPlayerApplicationModel.FootballPositions = footballPositions.Select(x => x.Position).ToList();
+            editPlayerApplicationModel.BasketballPositions = basketballPositions.Select(x => x.Position).ToList();
+            editPlayerApplicationModel.BaseballPositions = _context.SelectedPositionToSport.Where(x => x.Sport == "Baseball")
+                .Select(x => x.Position)
+                .ToList();
+            editPlayerApplicationModel.HockeyPositions = _context.SelectedPositionToSport.Where(x => x.Sport == "Hockey")
+                .Select(x => x.Position)
+                .ToList();
+            editPlayerApplicationModel.SoccerPositions = _context.SelectedPositionToSport.Where(x => x.Sport == "Soccer")
+                .Select(x => x.Position)
+                .ToList();
             // .ForEach(x =>application.Sports.Add(x.Position));
             return View(editPlayerApplicationModel);
             //return View(application);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, PlayerApplicationModel model)
+        public async Task<IActionResult> Edit(int id, EditPlayerApplicationModel model)
         {
-            if (id != model.Id)
+            if (id != model.PlayerApplicationModel.Id)
             {
                 return NotFound();
             }
 
             if (ModelState.IsValid)
             {
-                _context.Update(model);
+                _context.Update(model.PlayerApplicationModel);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(List));
             }
@@ -128,11 +142,31 @@ namespace PlayerCoachApplication.Controllers
         }
     }
 }
-       
 
-                
-        
-        
-   
+//This code is a controller for handling player applications in an ASP.NET Core web app.
+//It connects to a database and provides actions for creating, listing, editing, and deleting player applications.
+//Key points:
+//•	The controller uses a database context (PlayerApplicationDBContext) to access player application data.
+//•	Index:
+//•	If a first name is provided, it creates a new player application and saves it to the database.
+//•	It also loads available positions for the selected sport and adds them to the view model.
+//•	List:
+//•	Shows all player applications, or only those for a selected sport.
+//•	Edit (GET):
+//•	Loads a player application by ID.
+//•	Loads all possible positions for each sport and adds them to the model for editing.
+//•	Edit (POST):
+//•	Updates a player application in the database if the submitted data is valid.
+//•	Delete:
+//•	Removes a player application from the database.
+//In short:
+//This controller lets you create, view, filter, edit, and delete player applications in your web app, and manages the available positions for each sport.
+
+
+
+
+
+
+
 
 
