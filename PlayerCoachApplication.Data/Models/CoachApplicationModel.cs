@@ -16,7 +16,7 @@ namespace PlayerCoachApplication.Data.Models
         public string? SelectedSportName { get; set; }
         public string? SelectedRole { get; set; }
 
-        public IEnumerable<string> Sports { get; set; }
+        public IEnumerable<string> Sport { get; set; }
 
     }
 }

@@ -30,7 +30,7 @@
     <div class="mb-3">
         <select asp-for="SelectedSportName" class="form-control">
             <option value="">-- Select Sport --</option>
-            @foreach (var sport in Model.Sports)
+            @foreach (var sport in Model.Sport)
             {
                 <option value="@sport">@sport</option>
             }

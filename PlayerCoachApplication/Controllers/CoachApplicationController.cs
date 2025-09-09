@@ -46,17 +46,26 @@ namespace PlayerCoachApplication.Controllers
         }
         public async Task<IActionResult> List(string selectedSport = "")
         {
-            var applicationsQuery = _context.CoachApplicationModel
+            var applicationsQuery = await _context.CoachApplicationModel
                 .OrderBy(a => a.SelectedSportName)
-                .AsQueryable();
+                .ToListAsync();
 
             if (!string.IsNullOrWhiteSpace(selectedSport))
             {
-                applicationsQuery = applicationsQuery.Where(a => a.SelectedSportName == selectedSport);
+                applicationsQuery = (List<CoachApplicationModel>)applicationsQuery.Where(a => a.SelectedSportName == selectedSport);
             }
-
-            var applications = await applicationsQuery.ToListAsync();
-            return View(applications);
+            //var applications = new List<CoachApplicationModel>();
+            //try
+            //{
+            //    applications = await applicationsQuery.ToListAsync();
+            //}
+            //catch (Exception ex)
+            //{
+            //    // Log the exception (you can use a logging framework here)
+            //    Console.WriteLine($"An error occurred while fetching applications: {ex.Message}");
+            //}
+            //var applications = await applicationsQuery.ToListAsync();
+            return View(applicationsQuery);
         }
 
 
@@ -105,7 +114,7 @@ namespace PlayerCoachApplication.Controllers
                 .Distinct()
                 .OrderBy(s => s)
                 .ToListAsync();
-            application.Sports = sports;
+            application.Sport = sports;
             
 
             return View(application);
