@@ -25,6 +25,7 @@
             <th>Last Name</th>  
             <th>Date Of Birth</th>  
             <th>Sport</th>  
+            <th>Years Of Experience</th>
         </tr>  
     </thead>  
     <tbody>  
@@ -34,7 +35,8 @@
                 <td>@app.FirstName</td>  
                 <td>@app.LastName</td>  
                 <td>@(app.DateOfBirth?.ToShortDateString() ?? "N/A")</td>  
-                <td>@app.SelectedSportName</td>  
+                <td>@app.SelectedSportName</td>
+                <td>@app.YearsOfExperience</td>
                 <td>
                 <a asp-action="Edit" asp-route-id="@app.Id" class="btn btn-sm btn-warning">Edit</a>
                 <form asp-action="Delete" asp-route-id="@app.Id" method="post" style="display:inline;">

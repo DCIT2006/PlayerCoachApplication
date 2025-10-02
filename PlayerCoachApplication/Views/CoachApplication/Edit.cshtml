@@ -28,7 +28,8 @@
         <span asp-validation-for="YearsOfExperience" class="text-danger"></span>
     </div>
     <div class="mb-3">
-        <select asp-for="SelectedSportName" class="form-control">
+        <input type="hidden" asp-for="Sport" />
+        <select asp-for="SelectedSportName" class="form-control" id="sport">
             <option value="">-- Select Sport --</option>
             @foreach (var sport in Model.Sport)
             {

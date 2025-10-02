@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PlayerCoachApplication.Data.Context;
 
@@ -11,9 +12,11 @@ using PlayerCoachApplication.Data.Context;
 namespace PlayerCoachApplication.Data.Migrations
 {
     [DbContext(typeof(PlayerApplicationDBContext))]
-    partial class PlayerApplicationDBContextModelSnapshot : ModelSnapshot
+    [Migration("20250909225528_AddSportToCoachApplicationViewModel")]
+    partial class AddSportToCoachApplicationViewModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

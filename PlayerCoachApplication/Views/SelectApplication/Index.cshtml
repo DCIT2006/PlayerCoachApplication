@@ -9,61 +9,70 @@
                 <h1 class="text-center">Select Your Sport</h1>
 
                 <form method="post" asp-controller="SelectApplication" asp-action="Index">
-                    <select id="sport" name="selectedSport">
+                     <select id="sport" name="selectedSport">
                         <option value="Football">Football</option>
                         <option value="Basketball">Basketball</option>
                         <option value="Baseball">Baseball</option>
                         <option value="Hockey">Hockey</option>
                         <option value="Soccer">Soccer</option>
-                    </select>
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </form>
-            </div>
-        </div>
-
-    }
-    else if (Model != null && Model.SelectedSportName != null && Model.SelectedRole == null)
-    {
-        <div class="d-flex justify-content-center align-items-center vh-25">
-            <div class="text-center">
-                <h1 class="text-center">Select Your Role</h1>
-
-                <form method="post" asp-controller="SelectApplication" asp-action="Index">
-                    <input type="hidden" name="selectedSport" value="@Model.SelectedSportName" />
-                    <select id="role" name="selectedRole">
+                     </select>
+                        <br/><br/>
+                        <select id="role" name="selectedRole" required>
+                        <option value="">-- Select Role --</option>
                         <option value="Coach">Coach</option>
                         <option value="Player">Player</option>
-                    </select>
+                        </select>
+                        <br/><br/>
                     <button type="submit" class="btn btn-primary">Submit</button>
-                </form>
+                 </form>
             </div>
-        </div>
-    }
-    else if (Model != null && Model.SelectedSportName != null && Model.SelectedRole != null)
-    {
-        if (Model.SelectedRole == "Coach")
-        {
-            <h1 class="text-center">Your Selection</h1>
-            <div class="text-center">
+         </div>
 
-                <form method="get" asp-controller="CoachApplication" asp-action="Index">
-                    <input type="hidden" name="selectedSportName" value="@Model.SelectedSportName" />
-                    <input type="hidden" name="selectedRole" value="@Model.SelectedRole" />
-                    <button type="submit" class="btn btn-success">Go to Application</button>
-                </form>
-            </div>
-        }
-        else
-        {
-            <h1 class="text-center">Your Selection</h1>
-                <div class="text-center">
-        <form method="get" asp-controller="PlayerApplication" asp-action="Index">
-                <input type="hidden" name="selectedSportName" value="@Model.SelectedSportName" />
-                <input type="hidden" name="selectedRole" value="@Model.SelectedRole" />
-                <button type="submit" class="btn btn-success">Go to Application</button>
-            </form>
-            </div>
-        }
+            
+
+    // }
+    // else if (Model != null && Model.SelectedSportName != null && Model.SelectedRole == null)
+    // {
+    //     <div class="d-flex justify-content-center align-items-center vh-25">
+    //         <div class="text-center">
+    //             <h1 class="text-center">Select Your Role</h1>
+
+    //             <form method="post" asp-controller="SelectApplication" asp-action="Index">
+    //                 <input type="hidden" name="selectedSport" value="@Model.SelectedSportName" />
+    //                 <select id="role" name="selectedRole">
+    //                     <option value="Coach">Coach</option>
+    //                     <option value="Player">Player</option>
+    //                 </select>
+    //                 <button type="submit" class="btn btn-primary">Submit</button>
+    //             </form>
+    //         </div>
+    //     </div>
+    // }
+    // else if (Model != null && Model.SelectedSportName != null && Model.SelectedRole != null)
+    // {
+    //     if (Model.SelectedRole == "Coach")
+    //     {
+    //         <h1 class="text-center">Your Selection</h1>
+    //         <div class="text-center">
+
+    //             <form method="get" asp-controller="CoachApplication" asp-action="Index">
+    //                 <input type="hidden" name="selectedSportName" value="@Model.SelectedSportName" />
+    //                 <input type="hidden" name="selectedRole" value="@Model.SelectedRole" />
+    //                 <button type="submit" class="btn btn-success">Go to Application</button>
+    //             </form>
+    //         </div>
+    //     }
+    //     else
+    //     {
+    //         <h1 class="text-center">Your Selection</h1>
+    //             <div class="text-center">
+    //     <form method="get" asp-controller="PlayerApplication" asp-action="Index">
+    //             <input type="hidden" name="selectedSportName" value="@Model.SelectedSportName" />
+    //             <input type="hidden" name="selectedRole" value="@Model.SelectedRole" />
+    //             <button type="submit" class="btn btn-success">Go to Application</button>
+    //         </form>
+    //         </div>
+    //     }
         
 
     }
