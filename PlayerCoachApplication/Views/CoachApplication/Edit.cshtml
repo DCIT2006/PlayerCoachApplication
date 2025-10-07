@@ -1,4 +1,4 @@
-﻿@model PlayerCoachApplication.Data.Models.CoachApplicationModel
+﻿@model PlayerCoachApplication.Models.CoachApplicationViewModel
 
 @{
     ViewData["Title"] = "Edit Player Application";
@@ -28,10 +28,10 @@
         <span asp-validation-for="YearsOfExperience" class="text-danger"></span>
     </div>
     <div class="mb-3">
-        <input type="hidden" asp-for="Sport" />
+        <input type="hidden" asp-for="Sports" />
         <select asp-for="SelectedSportName" class="form-control" id="sport">
             <option value="">-- Select Sport --</option>
-            @foreach (var sport in Model.Sport)
+            @foreach (var sport in Model.Sports)
             {
                 <option value="@sport">@sport</option>
             }

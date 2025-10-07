@@ -13,10 +13,10 @@ namespace PlayerCoachApplication.Data.Models
         public string? LastName { get; set; }
         public DateTime? DateOfBirth { get; set; }
         public int? YearsOfExperience { get; set; }
-        public string? SelectedSportName { get; set; }
+        public string SelectedSportName { get; set; }
         public string? SelectedRole { get; set; }
 
-        public IEnumerable<string> Sport { get; set; }
+       
 
     }
 }

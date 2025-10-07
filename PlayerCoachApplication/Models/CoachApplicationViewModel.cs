@@ -18,6 +18,8 @@ namespace PlayerCoachApplication.Models
         public string? SelectedSportName { get; set; }
 
         public string? SelectedRole { get; set; }
+
+        public List<string> Sports { get; set; } = new List<string>();
     }
 }
 

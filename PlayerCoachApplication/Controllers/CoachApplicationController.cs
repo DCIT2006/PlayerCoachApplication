@@ -41,6 +41,11 @@ namespace PlayerCoachApplication.Controllers
                 SelectedRole = coachApplicationViewModel.SelectedRole,
                 DateOfBirth = coachApplicationViewModel.DateOfBirth,
                 YearsOfExperience = coachApplicationViewModel.YearsOfExperience,
+                Sports = await _context.SelectedPositionToSport
+                    .Select(x => x.Sport)
+                    .Distinct()
+                    .OrderBy(s => s)
+                    .ToListAsync()
             };
             return View(model);
         }
@@ -114,7 +119,7 @@ namespace PlayerCoachApplication.Controllers
                 .Distinct()
                 .OrderBy(s => s)
                 .ToListAsync();
-            application.Sport = sports;
+            ViewBag.Sports = sports;
             
 
             return View(application);
