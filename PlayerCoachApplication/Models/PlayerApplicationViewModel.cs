@@ -6,15 +6,19 @@ namespace PlayerCoachApplication.Models
     {
 
         public int? Id { get; set; }
+        
         public string? FirstName { get; set; }
-        [Required(ErrorMessage = "First Name is required")]
+        [Required(ErrorMessage = "Firstt Name is required")]
         public string? LastName { get; set; }
         [Required(ErrorMessage = "Last Name is required")]
         public DateTime? DateOfBirth { get; set; }
         [Required(ErrorMessage = "Date of Birth is required")]
         public string PreferredPosition { get; set; } = string.Empty;
+        [Required(ErrorMessage ="Preferred Position Is Required")]
         public string? SelectedSportName { get; set; }
+        
         public string? SelectedPosition { get; set; }
+        [Required(ErrorMessage = "Selected Position Is Required")]
 
         public string? SelectedRole { get; set; }
 

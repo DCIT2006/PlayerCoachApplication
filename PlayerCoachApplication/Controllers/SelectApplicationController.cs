@@ -19,6 +19,15 @@ namespace PlayerCoachApplication.Controllers
                 SelectedSportName = selectedSport,
                 SelectedRole = selectedRole
             };
+            if (selectedRole == "Coach")
+            {
+                return RedirectToAction("Index", "CoachApplication", model );
+            }
+            else if (selectedRole == "Player")
+            {
+                return RedirectToAction("Index", "PlayerApplication", model );
+            }
+
 
             return View(model);
         }

@@ -9,6 +9,7 @@
 
 <form method="post" asp-controller="PlayerApplication" asp-action="List">
     <select id="sport" name="SelectedSport">
+        <option value="">All</option>
         <option value="Football">Football</option>
         <option value="Basketball">Basketball</option>
         <option value="Baseball">Baseball</option>
@@ -20,7 +21,7 @@
 </form>
 
 
-<table class="table">
+<table class="table"> 
     <thead>
         <tr>
             <th>First Name</th>

@@ -26,7 +26,7 @@ namespace PlayerCoachApplication.Controllers
                     LastName = coachApplicationViewModel.LastName,
                     DateOfBirth = coachApplicationViewModel.DateOfBirth,
                     YearsOfExperience = coachApplicationViewModel.YearsOfExperience,
-                    SelectedSportName = coachApplicationViewModel.SelectedSportName,
+                    SelectedSportName = coachApplicationViewModel.SelectedSportName ?? string.Empty,
                     SelectedRole = coachApplicationViewModel.SelectedRole
                 };
                 await _context.CoachApplicationModel.AddAsync(coachApplicationModel);
@@ -57,7 +57,7 @@ namespace PlayerCoachApplication.Controllers
 
             if (!string.IsNullOrWhiteSpace(selectedSport))
             {
-                applicationsQuery = (List<CoachApplicationModel>)applicationsQuery.Where(a => a.SelectedSportName == selectedSport);
+                applicationsQuery = applicationsQuery.Where(a => a.SelectedSportName == selectedSport).ToList();
             }
             //var applications = new List<CoachApplicationModel>();
             //try
@@ -120,9 +120,19 @@ namespace PlayerCoachApplication.Controllers
                 .OrderBy(s => s)
                 .ToListAsync();
             ViewBag.Sports = sports;
-            
 
-            return View(application);
+            var model = new CoachApplicationViewModel
+            {
+                Id = application.Id,
+                FirstName = application.FirstName,
+                LastName = application.LastName,
+                DateOfBirth = application.DateOfBirth,
+                YearsOfExperience = application.YearsOfExperience,
+                SelectedSportName = application.SelectedSportName,
+                SelectedRole = application.SelectedRole,
+                Sports = sports
+            };
+            return View(model);
         }
 
         [HttpPost]

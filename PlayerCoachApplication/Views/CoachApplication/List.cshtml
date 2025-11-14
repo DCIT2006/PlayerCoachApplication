@@ -1,10 +1,10 @@
-﻿@model IEnumerable<PlayerCoachApplication.Data.Models.CoachApplicationModel>  
-@{  
-    ViewData["Title"] = "Coach Applications";  
-    Layout = "_Layout";  
-    var sports = ViewBag.Sports as List<string>;  
-    var selectedSport = ViewBag.SelectedSport as string;  
-}  
+﻿@model IEnumerable<PlayerCoachApplication.Data.Models.CoachApplicationModel>
+@{
+    ViewData["Title"] = "Coach Applications";
+    Layout = "_Layout";
+    var sports = ViewBag.Sports as List<string>;
+    var selectedSport = ViewBag.SelectedSport as string;
+}
 <h2>Coach Applications</h2>
 
 @* <form method="post" asp-controller="CoachApplication" asp-action="List">
@@ -18,37 +18,49 @@
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>  *@
 
-<table class="table">  
-    <thead>  
-        <tr>  
-            <th>First Name</th>  
-            <th>Last Name</th>  
-            <th>Date Of Birth</th>  
-            <th>Sport</th>  
+<form method="post" asp-controller = "CoachApplication" asp-action="List">
+    <select id="sport" name="SelectedSport">
+        <option value="">All</option>
+        <option value="Football">Football</option>
+        <option value="Basketball">Basketball</option>
+        <option value="Baseball">Baseball</option>
+        <option value="Hockey">Hockey</option>
+        <option value="Soccer">Soccer</option>
+     </select>
+     <button type="submit" class="btn btn-primary">Submit</button>
+ </form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Date Of Birth</th>
+            <th>Sport</th>
             <th>Years Of Experience</th>
-        </tr>  
-    </thead>  
-    <tbody>  
-        @foreach (var app in Model)  
-        {  
-            <tr>  
-                <td>@app.FirstName</td>  
-                <td>@app.LastName</td>  
-                <td>@(app.DateOfBirth?.ToShortDateString() ?? "N/A")</td>  
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var app in Model)
+        {
+            <tr>
+                <td>@app.FirstName</td>
+                <td>@app.LastName</td>
+                <td>@(app.DateOfBirth?.ToShortDateString() ?? "N/A")</td>
                 <td>@app.SelectedSportName</td>
                 <td>@app.YearsOfExperience</td>
                 <td>
-                <a asp-action="Edit" asp-route-id="@app.Id" class="btn btn-sm btn-warning">Edit</a>
-                <form asp-action="Delete" asp-route-id="@app.Id" method="post" style="display:inline;">
-                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm" ('Are you sure you want to delete this application?');">Delete</button>
-                </form> 
+                    <a asp-controller="CoachApplication" asp-action="Edit" asp-route-id="@app.Id" class="btn btn-sm btn-warning">Edit</a>
+                    <form asp-action="Delete" asp-route-id="@app.Id" method="post" style="display:inline;">
+                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm" ('Are you sure you want to delete this application?');">Delete</button>
+                    </form>
                 </td>
-            </tr>  
-        }  
-    </tbody>  
+            </tr>
+        }
+    </tbody>
 </table>
 
-                @* This code creates a web page that displays a list of coach applications and lets users filter, edit, or delete them.
+@* This code creates a web page that displays a list of coach applications and lets users filter, edit, or delete them.
 What it does:
 •	Sets up the page with a title and layout.
 •	Shows a heading: "Coach Applications".

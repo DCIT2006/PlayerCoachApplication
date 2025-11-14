@@ -6,9 +6,10 @@ using PlayerCoachApplication.Data.Context;
 
 Console.WriteLine("Seeding database...");
 // Build Configuration
-
+Console.WriteLine($"Current Directory: {Directory.GetCurrentDirectory()}");
+Console.WriteLine($"Base Directory: {AppDomain.CurrentDomain.BaseDirectory}");
 var configuration = new ConfigurationBuilder()
-    .SetBasePath(Directory.GetCurrentDirectory())
+    //.SetBasePath(Directory.GetCurrentDirectory()
     .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
     .Build();
 
@@ -17,6 +18,13 @@ var host = Host.CreateDefaultBuilder(args)
     {
         services.AddDbContext<PlayerApplicationDBContext>(options =>
             options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
-        services.AddScoped<CoachSeeder>();
+        services.AddTransient<CoachSeeder>();
     })
     .Build();
+
+using (var scope = host.Services.CreateScope())
+{
+  
+    var seeder = scope.ServiceProvider.GetRequiredService<CoachSeeder>();
+    await seeder.SeedASync();
+}
