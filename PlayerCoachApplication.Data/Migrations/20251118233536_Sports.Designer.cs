@@ -12,8 +12,8 @@ using PlayerCoachApplication.Data.Context;
 namespace PlayerCoachApplication.Data.Migrations
 {
     [DbContext(typeof(PlayerApplicationDBContext))]
-    [Migration("20250612225020_PlayerApplicationModel")]
-    partial class PlayerApplicationModel
+    [Migration("20251118233536_Sports")]
+    partial class Sports
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -46,6 +46,7 @@ namespace PlayerCoachApplication.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SelectedSportName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("YearsOfExperience")

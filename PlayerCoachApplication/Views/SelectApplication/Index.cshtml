@@ -2,20 +2,26 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
-    if (Model == null)
+    if (Model.AvailableSports != null && Model.SelectedSportName == null)
     {
         <div class="d-flex justify-content-center align-items-center vh-25">
             <div class="text-center">
                 <h1 class="text-center">Select Your Sport</h1>
 
                 <form method="post" asp-controller="SelectApplication" asp-action="Index">
-                     <select id="sport" name="selectedSport">
-                        <option value="Football">Football</option>
-                        <option value="Basketball">Basketball</option>
-                        <option value="Baseball">Baseball</option>
-                        <option value="Hockey">Hockey</option>
-                        <option value="Soccer">Soccer</option>
-                     </select>
+                    <div class="mb-3">
+                        <label class="form-label" for="SelectedSportName">Sport</label>
+                        <select id="SelectedSportName" name="selectedSport" class="form-select">
+                            <option value="">-- Select Sport --</option>
+                            @if (Model?.AvailableSports != null)
+                            {
+                                foreach (var sport in Model.AvailableSports)
+                                {
+                                    <option value="@sport">@sport</option>
+                                }
+                            }
+                        </select>
+                    </div>
                         <br/><br/>
                         <select id="role" name="selectedRole" required>
                         <option value="">-- Select Role --</option>

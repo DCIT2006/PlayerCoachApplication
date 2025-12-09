@@ -1,13 +1,27 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using PlayerCoachApplication.Data.Context;
 using PlayerCoachApplication.Models;
 
 namespace PlayerCoachApplication.Controllers
 {
     public class SelectApplicationController : Controller
     {
+        private readonly PlayerApplicationDBContext _context;
+        public SelectApplicationController(PlayerApplicationDBContext context)
+        {
+            _context = context; //Constructor
+        }
         public IActionResult Index()
         {
-            return View();
+            var model = new SelectedSportAndRoleViewModel
+            {
+                AvailableSports = _context.SelectedPositionToSport
+                    .Select(s => s.Sport)
+                    .Distinct()
+                    .OrderBy(s => s)
+                    .ToList()
+            };
+            return View(model);
         }
 
         [HttpPost]

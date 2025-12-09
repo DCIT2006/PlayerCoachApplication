@@ -9,8 +9,8 @@ Console.WriteLine("Seeding database...");
 Console.WriteLine($"Current Directory: {Directory.GetCurrentDirectory()}");
 Console.WriteLine($"Base Directory: {AppDomain.CurrentDomain.BaseDirectory}");
 var configuration = new ConfigurationBuilder()
-    //.SetBasePath(Directory.GetCurrentDirectory()
-    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+    .SetBasePath(AppContext.BaseDirectory)
+    .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
     .Build();
 
 var host = Host.CreateDefaultBuilder(args)

@@ -4,6 +4,9 @@
     {
         public string SelectedSportName { get; set; }
         public string? SelectedRole { get; set; }
+
+        public List<string> AvailableSports { get; set; } = new();
+        
     }
 }
 

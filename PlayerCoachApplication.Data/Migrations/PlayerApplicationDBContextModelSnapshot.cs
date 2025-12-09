@@ -43,9 +43,6 @@ namespace PlayerCoachApplication.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SelectedSportName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.PrimitiveCollection<string>("Sport")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
