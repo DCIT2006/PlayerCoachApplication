@@ -1,0 +1,27 @@
+using System;
+using System.Collections.Generic;
+using PlayerCoachApplication.Data;
+
+namespace PlayerCoachApplication.Initialization
+{
+    public class DataSeeder
+    {
+        // Simulates retrieving system initialization records from a data layout
+        public static List<Player> SeedInitialPlayers()
+        {
+            return new List<Player>
+            {
+                new Player { PlayerId = 1, FirstName = "Derek", LastName = "Moore", Position = "Quarterback", JerseyNumber = 7, AssignedCoachId = 101 },
+                new Player { PlayerId = 2, FirstName = "Alex", LastName = "Smith", Position = "Receiver", JerseyNumber = 81, AssignedCoachId = 101 }
+            };
+        }
+
+        public static List<Coach> SeedInitialCoaches()
+        {
+            return new List<Coach>
+            {
+                new Coach { CoachId = 101, FirstName = "John", LastName = "Doe", Specialization = "Offensive Coordinator" }
+            };
+        }
+    }
+}
